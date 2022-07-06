@@ -1,7 +1,17 @@
-      PROGRAM THMS
+      PROGRAM EXAMPLE
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
       DIMENSION T(7,8)
 
+!     Example system:
+!     |-6  1  1  1  0  0  0 |  3  |
+!     | 1 -6  1  1  1  0  0 |  1  |
+!     | 1  1 -6  1  1  1  0 |  0  |
+!     | 1  1  1 -6  1  1  1 |  0  |
+!     | 0  1  1  1 -6  1  1 | -8  |
+!     | 0  0  1  1  1 -6  1 | -17 |
+!     | 0  0  0  1  1  1 -6 | -27 |
+
+!     Band rearrangement:
       T(1,:) = (/ 0, 0, 0, -6, 1, 1, 1, 3 /)
       T(2,:) = (/ 0, 0, 1, -6, 1, 1, 1, 1 /)
       T(3,:) = (/ 0, 1, 1, -6, 1, 1, 1, 0 /)
@@ -13,7 +23,7 @@
       CALL THOMAS(7,3,3,T)
       WRITE(*,*) T(:,8)
 
-      END PROGRAM THMS
+      END PROGRAM EXAMPLE
 ! === T H O M A S   A L G O R I T H M   B A N D E D   M A T R I X ======
 !     KL = Lower band: No. of sub-diagonals
 !     KU = Upper band: No. of super-diagonals
